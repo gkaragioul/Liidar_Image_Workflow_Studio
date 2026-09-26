@@ -57,6 +57,21 @@ For full generation and training tests, the local machine should provide:
 
 On machines without ComfyUI or a compatible GPU runtime, the app can still be developed and UI-tested, but generation preflight will report missing runtime or model readiness.
 
+## Getting Started
+
+Requirements: Windows with PowerShell, Git, Python 3.12, [uv](https://docs.astral.sh/uv/), and Node.js with npm. The backend dependencies are locked in `app/backend/uv.lock`.
+
+```powershell
+git clone https://github.com/gkaragioul/Liidar_Image_Workflow_Studio.git
+cd Liidar_Image_Workflow_Studio\app\backend
+uv sync --extra test
+cd ..\frontend
+npm install
+cd ..\..
+```
+
+For generation, run `.\tools\setup\install-comfyui.ps1`, then install a GPU-enabled PyTorch build, the ComfyUI requirements, and your chosen model files as the script's closing notes describe. For LoRA training, `.\tools\setup\install-sd-scripts.ps1` installs kohya-ss sd-scripts with an AMD RDNA4 ROCm PyTorch build. `.\tools\setup\check-system.ps1` reports the OS, CPU, RAM, and GPU it finds. Then start the app as below and open `http://127.0.0.1:5274`.
+
 ## Start The App
 
 Use the project launcher:
@@ -111,6 +126,10 @@ Public releases should not include:
 - Temporary local worktree/cache folders.
 
 The repository is intended to contain source code, tests, configuration templates, and documentation only.
+
+## Disclaimer
+
+Liidar is provided as is, without warranty of any kind, under the [MIT License](LICENSE). Use it at your own risk. It reads the image folders you choose, writes and removes data in its own profile, dataset, and training folders, and runs long GPU workloads; the setup scripts clone and install third-party software. You are responsible for the images you use and generate, including consent from anyone they depict, and for the licenses of the models you install.
 
 ## License
 
