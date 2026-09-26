@@ -2,7 +2,7 @@
 
 <p align="center">
   <strong>Local AMD-first model studio for dataset prep, character analysis, generation, and LoRA training.</strong><br>
-  <em>ComfyUI-oriented workflow management, prompt recipes, local training helpers, runtime checks, and output review without hosted token-based services.</em>
+  <em>ComfyUI-oriented workflow management, prompt recipes, local training helpers, runtime checks, and output review.</em>
 </p>
 
 <p align="center">
@@ -42,6 +42,14 @@ Liidar currently includes:
 - Dataset preparation and local training workflow helpers.
 - Training run launch, polling, cancellation, and log tail support.
 - Frontend and backend test coverage for the current workflow.
+
+## Optional Anthropic API Feature
+
+Everything above runs locally. The backend also has one optional cloud feature, off by default: dataset-prep crop scanning with Anthropic's Claude API.
+
+- It is used only when you save an Anthropic API key (`POST /api/settings/anthropic-key`) and run dataset prep with `scan_mode: "claude"` (or the older `use_ai: true`). The frontend uses local scanning.
+- When it is used, Liidar uploads each scanned image to Anthropic (`https://api.anthropic.com/v1/messages`), downscaled to at most 384 x 384 pixels as a JPEG, for up to `ai_max_images` images per run (default 100). The key test (`POST /api/settings/anthropic-key/test`) sends a short text-only request. Anthropic's terms and data policies apply to what you upload, so only use it for images you have the right and consent to share.
+- The API key is stored in plain text in `config/secrets/anthropic.json` inside the project folder (the folder is git-ignored). Anyone who can read that folder can use the key. Remove it with `DELETE /api/settings/anthropic-key` or by deleting the file.
 
 ## Runtime Requirements
 
