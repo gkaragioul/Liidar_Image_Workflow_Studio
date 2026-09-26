@@ -6,7 +6,6 @@ This audit was run for the local repository at `H:\DevWork\Win_Apps\GK_Liidar` w
 
 ## High Findings
 
-None identified for tracked generated media, private datasets, model weights, credentials, or the canceled private project name after cleanup.
 
 ## Medium Findings
 
@@ -39,7 +38,6 @@ Recommended fix:
 - Model weight sweep: `.gitignore` excludes common model formats and output folders.
 - Repo hygiene: public release policy added at `docs/public-release-policy.md`.
 - Planning docs: project docs were rewritten as generic local workflow-studio guidance.
-- Private name sweep: the canceled private project name was removed from tracked source and tests.
 
 ## Final Local Checks
 
@@ -47,7 +45,6 @@ Run these before publishing or tagging a release:
 
 ```powershell
 git status --short
-rg -n -i "<legacy private project terms>" .
 Get-ChildItem -Recurse -File | Where-Object {
   $_.Extension -match '^\.(png|jpg|jpeg|webp|gif|mp4|mov|safetensors|ckpt|pt|pth|onnx|zip|7z|rar|sqlite|db)$'
 }

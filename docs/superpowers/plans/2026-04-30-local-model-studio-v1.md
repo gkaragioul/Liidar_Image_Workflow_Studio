@@ -49,7 +49,7 @@ The project is intentionally generic. It does not ship generated images, identit
 ## Acceptance Criteria
 
 - A new user can understand the project from `README.md`.
-- The repository can be published without private project artifacts.
+- The repository can be published without earlier project artifacts.
 - The app can be developed without requiring bundled media or model weights.
 - Ignored folders cover outputs, datasets, model files, temporary experiments, credentials, and archives.
 - A release audit records license status, third-party dependency status, and repository-hygiene checks.
